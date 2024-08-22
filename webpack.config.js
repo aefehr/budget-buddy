@@ -29,7 +29,10 @@ module.exports = {
       template: './src/index.html',
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: 'public', to: '.' }],
+        patterns: [
+            { from: 'src/manifest.json', to: '.' },
+            { from: 'public', to: '.' },
+        ],
     }),
   ],
   devtool: 'source-map',
