@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AddPurchase from './tabs/AddPurchase';
+import ViewBudget from './tabs/ViewBudget';
+import Profile from './tabs/Profile';
+import Navbar from './components/NavBar';
 
 const Popup = () => {
+  const [currentTab, setCurrentTab] = useState('viewBudget');
+
   return (
     <div>
-      <h1>Budget Patrol</h1>
-      <p>Track your expenses here!</p>
+      <Navbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
+      {currentTab === 'addPurchase' && <AddPurchase />}
+      {currentTab === 'viewBudget' && <ViewBudget />}
+      {currentTab === 'settings' && <Profile />}
     </div>
   );
 };
