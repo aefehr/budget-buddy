@@ -21,15 +21,15 @@ function Navbar({ currentTab, setCurrentTab }: NavbarProps) {
         >
             <BottomNavigationAction
                 value="viewBudget"
-                icon={<HomeIcon />}
+                icon={<HomeIcon sx={{ fontSize: 30 }} />}
             />
             <BottomNavigationAction
                 value="addPurchase"
-                icon={<AddCircleIcon />}
+                icon={<AddCircleIcon sx={{ fontSize: 30 }} />}
             />
             <BottomNavigationAction
                 value="settings"
-                icon={<AccountCircleIcon />}
+                icon={<AccountCircleIcon sx={{ fontSize: 30 }} />}
             />
         </BottomNavigation>
     );
