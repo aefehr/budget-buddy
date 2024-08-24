@@ -1,0 +1,52 @@
+#floating-button {
+    position: fixed;
+    right: -60px; /* Start off-screen */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+    background-color: #14705E;  
+    border-radius: 7px 0px 0px 7px; /* Rounded corners on left, straight edge on right */
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 18px;
+    animation: slideIn 1s forwards;  /* Animation */
+    box-shadow: inset -2px 0px 10px rgba(0, 0, 0, 0.3); /* Inner shadow */
+}
+
+#panel {
+    position: fixed;
+    right: 0px;
+    top: 10%;
+    width: 320px;
+    height: 80vh;  /* Set the panel height */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+    display: none;  /* Hidden by default */
+    z-index: 10000;  /* Higher than the button */
+    overflow-y: auto;  /* Make the panel itself scrollable */
+}
+
+.exit-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #000;
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+    from {
+        right: -60px;  /* Start off-screen */
+    }
+    to {
+        right: 0px;  /* End at the right edge */
+    }
+}
