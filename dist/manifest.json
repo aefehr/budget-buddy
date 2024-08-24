@@ -2,10 +2,16 @@
     "manifest_version": 3,
     "name": "Budget Patrol",
     "version": "1.0",
-    "action": {
-      "default_popup": "index.html",
-      "default_icon": "icon.png"
-    },
-    "permissions": ["storage"]
+    "permissions": [
+      "storage",
+      "activeTab",
+      "scripting"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],   
+        "js": ["content.bundle.js"]
+      }
+    ]
   }
   

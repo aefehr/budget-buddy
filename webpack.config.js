@@ -1,12 +1,13 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: {
+    content: './src/content.tsx', // Entry point for your content script
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',  // Output will be content.bundle.js
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -25,9 +26,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
     new CopyWebpackPlugin({
         patterns: [
             { from: 'src/manifest.json', to: '.' },
