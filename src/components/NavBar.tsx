@@ -17,7 +17,6 @@ function Navbar({ currentTab, setCurrentTab }: NavbarProps) {
                 setCurrentTab(newValue);
             }}
             showLabels
-            sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
         >
             <BottomNavigationAction
                 value="viewBudget"
