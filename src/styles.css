@@ -46,3 +46,54 @@ p {
     font-weight: 600;
     font-size: 13px;
 }
+
+/* Wrapper for the amount input and dollar sign */
+.amount-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px; /* Adjust width to be less wide */
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    border-radius: 30px; /* Creates the oval shape */
+    border: 1px solid #ccc;
+    margin: 20px auto; /* Centers the wrapper horizontally */
+  }
+  
+  /* Styling for the dollar sign */
+  .dollar-sign {
+    font-size: 24px; /* Slightly larger for better alignment */
+    color: #888;
+    text-align: center;
+  }
+  
+  /* Styling for the input field */
+  .amount-input {
+    border: none;
+    background-color: transparent;
+    font-size: 24px; /* Larger font size for the placeholder '0' */
+    color: var(--dark-purple); /* Use the dark purple from your color variables */
+    text-align: center;
+    width: 100%;
+    outline: none;
+    appearance: textfield; /* Removes the spinner in some browsers */
+  }
+  
+  /* Placeholder styling */
+  .amount-input::placeholder {
+    color: var(--dark-purple); /* Purple color for the placeholder */
+    opacity: 0.7;
+  }
+  
+  /* Remove spinner buttons in Chrome, Safari, Edge, and Opera */
+  .amount-input::-webkit-outer-spin-button,
+  .amount-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  
+
+  
+  
+  

@@ -60,24 +60,54 @@ const AddPurchase = ({ updateBudget }: { updateBudget: () => void }) => {
     }
   };
 
+  // Calculate the budget preview
+  const getBudgetPreview = () => {
+    if (!amount || !category) return null;
+
+    const selectedCategory = categories.find((cat) => cat.name === category);
+    if (!selectedCategory) return null;
+
+    const amountNum = parseFloat(amount);
+    const newSpent = selectedCategory.spent + amountNum;
+    const remainingBudget = selectedCategory.total - newSpent;
+
+    return {
+      newSpent,
+      remainingBudget,
+    };
+  };
+
+  const budgetPreview = getBudgetPreview();
+
   return (
     <div style={{ padding: '5px' }}>
       <h1>Add Expense</h1>
-      <div style={{ marginBottom: '16px' }}>
-        <label>Amount</label>
+
+      {/* Amount Input Field */}
+      <div className="amount-input-wrapper">
+        <span className="dollar-sign">$</span>
         <input
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          style={{ width: '100%', padding: '8px', marginTop: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+          placeholder="0"
+          className="amount-input"
         />
       </div>
+
+      {/* Category Selection */}
       <div style={{ marginBottom: '16px' }}>
         <label>Category</label>
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          style={{ width: '100%', padding: '8px', marginTop: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+          style={{
+            width: '100%',
+            padding: '8px',
+            marginTop: '8px',
+            borderRadius: '4px',
+            border: '1px solid #ccc',
+          }}
         >
           <option value="">Select Category</option>
           {categories.map((cat) => (
@@ -87,15 +117,43 @@ const AddPurchase = ({ updateBudget }: { updateBudget: () => void }) => {
           ))}
         </select>
       </div>
+
+      {/* Note Input */}
       <div style={{ marginBottom: '16px' }}>
         <label>Note</label>
         <input
           type="text"
           value={note}
           onChange={(e) => setNote(e.target.value)}
-          style={{ width: '100%', padding: '8px', marginTop: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+          style={{
+            width: '100%',
+            padding: '8px',
+            marginTop: '8px',
+            borderRadius: '4px',
+            border: '1px solid #ccc',
+          }}
         />
       </div>
+
+      {/* Budget Preview */}
+      {budgetPreview && (
+        <div
+          style={{
+            marginBottom: '16px',
+            padding: '10px',
+            backgroundColor: '#f9f9f9',
+            borderRadius: '4px',
+            border: '1px solid #ccc',
+          }}
+        >
+          <h3>Budget Preview</h3>
+          <p><strong>{category}</strong></p>
+          <p>New Total Spent: ${budgetPreview.newSpent.toFixed(2)}</p>
+          <p>Remaining Budget: ${budgetPreview.remainingBudget.toFixed(2)}</p>
+        </div>
+      )}
+
+      {/* Save Button */}
       <button
         onClick={handleSave}
         style={{
@@ -115,6 +173,9 @@ const AddPurchase = ({ updateBudget }: { updateBudget: () => void }) => {
 };
 
 export default AddPurchase;
+
+
+
 
 
 
