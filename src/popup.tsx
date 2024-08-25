@@ -22,16 +22,17 @@ const Popup = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <div>
-        <Navbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
-      </div>
       <div style={{ flex: 1, overflowY: 'auto', padding: '16px', boxSizing: 'border-box' }}>
         {currentTab === 'addPurchase' && <AddPurchase updateBudget={updateBudget} />}
         {currentTab === 'viewBudget' && <ViewBudget budget={budget} />}
         {currentTab === 'settings' && <Profile />}
+      </div>
+      <div style={{ borderTop: '1px solid #ddd' }}>
+        <Navbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
       </div>
     </div>
   );
 };
 
 export default Popup;
+

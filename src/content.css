@@ -29,7 +29,18 @@
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
     display: none;  /* Hidden by default */
     z-index: 10000;  /* Higher than the button */
-    overflow-y: auto;  /* Make the panel itself scrollable */
+      /*  overflow-y: auto; Make the panel itself scrollable */
+    display: flex;
+    flex-direction: column;
+}
+
+#panel.show {
+    display: flex; /* Ensure it shows up properly */
+}
+
+#panel > div:first-child {
+    flex: 1;
+    overflow-y: auto;  /* Make the content area scrollable */
 }
 
 .exit-button {

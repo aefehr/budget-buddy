@@ -30,6 +30,7 @@ function injectFloatingButton() {
     // Create the expanded panel (initially hidden)
     const panel = document.createElement('div');
     panel.id = 'panel';
+    panel.style.display = 'none';
 
     // Create a root element for React to render into
     const root = document.createElement('div');
@@ -53,7 +54,7 @@ function injectFloatingButton() {
     // Add event listener to the button to toggle the panel
     button.addEventListener('click', () => {
         if (panel.style.display === 'none') {
-            panel.style.display = 'block';
+            panel.style.display = 'flex';
         } else {
             panel.style.display = 'none';
         }
