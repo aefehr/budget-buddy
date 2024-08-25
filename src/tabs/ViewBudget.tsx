@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './../styles.css';
 
 type BudgetCategory = {
   name: string;
@@ -43,57 +44,71 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
   };
 
   return (
-    <div style={{ padding: '16px' }}>
-      <h2>Your Budget</h2>
+    <div style={{ padding: '5px' }}> {/* Restored original padding */}
+      <h1>Your Budget</h1>
 
-      {categories.map((category, index) => (
-        <div
-          key={index}
-          style={{
-            marginBottom: '16px',
-            padding: '16px',
-            borderRadius: '8px',
-            backgroundColor: '#f0f0f0',
-            textAlign: 'left',
-          }}
-        >
-          <h3 style={{ margin: 0 }}>{category.name}</h3>
+      {categories.map((category, index) => {
+        const isOverBudget = category.spent > category.total;
+        return (
           <div
+            key={index}
             style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'flex-end',
-              marginTop: '8px',
+              marginBottom: '8px',
+              padding: '8px',
+              borderRadius: '8px',
+              backgroundColor: '#f0f0f0',
+              textAlign: 'left',
             }}
           >
-            <div style={{ textAlign: 'left' }}>
-              <p style={{ margin: 0, fontSize: '12px', color: '#8a8a8a' }}>Total Spent</p>
-              <p style={{ margin: 0, fontSize: '16px', color: '#4caf50', fontWeight: 'bold' }}>${category.spent}</p>
-            </div>
-            <div style={{ textAlign: 'right' }}>
-              <p style={{ margin: 0, fontSize: '12px', color: '#8a8a8a' }}>Total Budget</p>
-              <p style={{ margin: 0, fontSize: '16px', color: '#000', fontWeight: 'bold' }}>${category.total}</p>
-            </div>
-          </div>
-          <div
-            style={{
-              marginTop: '8px',
-              width: '100%',
-              backgroundColor: '#e0e0e0',
-              borderRadius: '5px',
-              overflow: 'hidden',
-            }}
-          >
+            <h3 className="category-name" style={{ margin: 0 }}>{category.name}</h3>
             <div
               style={{
-                width: `${(category.spent / category.total) * 100}%`,
-                height: '10px',
-                backgroundColor: '#800080', // purple color
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'flex-end',
+                marginTop: '2px',
               }}
-            />
+            >
+              <div style={{ textAlign: 'left' }}>
+                <p style={{ margin: 0, fontSize: '12px' }}>Total Spent</p>
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: '16px',
+                    color: isOverBudget ? '#D9534F' : 'var(--medium-green)', // Red if over budget, green otherwise
+                    fontWeight: 'bold',
+                  }}
+                >
+                  ${category.spent}
+                </p>
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <p style={{ margin: 0, fontSize: '12px', color: '#8a8a8a' }}>Total Budget</p>
+                <p style={{ margin: 0, fontSize: '16px', color: '#000', fontWeight: 'bold' }}>
+                  ${category.total}
+                </p>
+              </div>
+            </div>
+            <div
+              style={{
+                marginTop: '8px',
+                width: '100%',
+                backgroundColor: '#e0e0e0',
+                borderRadius: '5px',
+                overflow: 'hidden',
+              }}
+            >
+              <div
+                style={{
+                  width: `${(category.spent / category.total) * 100}%`,
+                  height: '10px',
+                  backgroundColor: isOverBudget ? '#D9534F' : 'var(--medium-green)', // Red if over budget, purple otherwise
+                }}
+              />
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
 
       <div style={{ marginTop: '24px' }}>
         <h3>Add a New Category</h3>
@@ -129,7 +144,7 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
             width: '100%',
             padding: '10px',
             borderRadius: '4px',
-            backgroundColor: '#4caf50',
+            backgroundColor: 'var(--medium-green)',
             color: '#fff',
             border: 'none',
             cursor: 'pointer',
@@ -143,5 +158,6 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
 };
 
 export default ViewBudget;
+
 
 

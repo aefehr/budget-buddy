@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './../styles.css';
 
 interface Category {
   name: string;
@@ -60,8 +61,8 @@ const AddPurchase = ({ updateBudget }: { updateBudget: () => void }) => {
   };
 
   return (
-    <div style={{ padding: '16px' }}>
-      <h2>Add Purchase</h2>
+    <div style={{ padding: '5px' }}>
+      <h1>Add Expense</h1>
       <div style={{ marginBottom: '16px' }}>
         <label>Amount</label>
         <input
