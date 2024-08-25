@@ -45,7 +45,7 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
 
   return (
     <div style={{ padding: '5px' }}> {/* Restored original padding */}
-      <h1>Your Budget</h1>
+      <h1 className='header'>Your Budget</h1>
 
       {categories.map((category, index) => {
         const isOverBudget = category.spent > category.total;
@@ -138,17 +138,8 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
             border: '1px solid #ccc',
           }}
         />
-        <button
+        <button className='add-button'
           onClick={handleAddCategory}
-          style={{
-            width: '100%',
-            padding: '10px',
-            borderRadius: '4px',
-            backgroundColor: 'var(--medium-green)',
-            color: '#fff',
-            border: 'none',
-            cursor: 'pointer',
-          }}
         >
           Add Category
         </button>

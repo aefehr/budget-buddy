@@ -21,13 +21,13 @@ const Popup = () => {
   }, []);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <div id="extension-root" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <div style={{ flex: 1, overflowY: 'auto', padding: '16px', boxSizing: 'border-box' }}>
         {currentTab === 'addPurchase' && <AddPurchase updateBudget={updateBudget} />}
         {currentTab === 'viewBudget' && <ViewBudget budget={budget} />}
         {currentTab === 'settings' && <Profile />}
       </div>
-      <div style={{ borderTop: '1px solid #ddd' }}>
+      <div>
         <Navbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
       </div>
     </div>
@@ -35,4 +35,5 @@ const Popup = () => {
 };
 
 export default Popup;
+
 

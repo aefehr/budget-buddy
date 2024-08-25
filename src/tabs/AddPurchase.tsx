@@ -81,7 +81,7 @@ const AddPurchase = ({ updateBudget }: { updateBudget: () => void }) => {
 
   return (
     <div style={{ padding: '5px' }}>
-      <h1>Add Expense</h1>
+      <h1 className='header'>Add Expense</h1>
 
       {/* Amount Input Field */}
       <div className="amount-input-wrapper">
@@ -154,17 +154,8 @@ const AddPurchase = ({ updateBudget }: { updateBudget: () => void }) => {
       )}
 
       {/* Save Button */}
-      <button
+      <button className='add-button'
         onClick={handleSave}
-        style={{
-          width: '100%',
-          padding: '10px',
-          backgroundColor: '#4caf50',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer',
-        }}
       >
         Save
       </button>

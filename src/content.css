@@ -25,13 +25,13 @@
     width: 320px;
     height: 80vh;  /* Set the panel height */
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 30px;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
     display: none;  /* Hidden by default */
     z-index: 10000;  /* Higher than the button */
-      /*  overflow-y: auto; Make the panel itself scrollable */
     display: flex;
     flex-direction: column;
+    overflow-y: auto;  /* Make the panel itself scrollable */
 }
 
 #panel.show {
