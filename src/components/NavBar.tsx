@@ -9,14 +9,16 @@ const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab }) => {
     return (
         <div id="custom-navbar" style={{
             display: 'flex',
-            justifyContent: 'space-around',
+            justifyContent: 'space-between',
             alignItems: 'center',
             backgroundColor: '#fff',
-            padding: '10px 0',
-            borderRadius: '30px 30px 20px 20px',
-            boxShadow: '0px -2px 15px rgba(0, 0, 0, 0.1)',
-            position: 'sticky',
-            bottom: 0,
+            paddingTop: '16px',
+            paddingBottom: '11px',
+            paddingLeft: '23px',
+            paddingRight: '23px',
+            borderRadius: '30px 30px 22px 22px',
+            boxShadow: '0px -1px 8px rgba(0, 0, 0, 0.2)',
+            
         }}>
             <div
                 className="nav-icon"
@@ -24,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab }) => {
                 style={{ flex: 1, textAlign: 'center', cursor: 'pointer' }}
             >
                 <svg
-                    width="32" height="32" viewBox="0 -960 960 960"
+                    width="33" height="33" viewBox="0 -960 960 960"
                     style={{
                         fill: currentTab === 'viewBudget' ? 'var(--dark-purple)' : '#cac9c9',
                         transition: 'transform 0.2s ease-in-out',
@@ -42,7 +44,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab }) => {
                 style={{ flex: 1, textAlign: 'center', cursor: 'pointer' }}
             >
                 <svg
-                    width="32" height="32" viewBox="0 0 24 24"
+                    width="33" height="33" viewBox="0 0 24 24"
                     style={{
                         fill: currentTab === 'addPurchase' ? 'var(--dark-purple)' : '#cac9c9',
                         transition: 'transform 0.2s ease-in-out',
@@ -60,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab }) => {
                 style={{ flex: 1, textAlign: 'center', cursor: 'pointer' }}
             >
                 <svg
-                    width="32" height="32" viewBox="0 0 24 24"
+                    width="33" height="33" viewBox="0 0 24 24"
                     style={{
                         fill: currentTab === 'settings' ? 'var(--dark-purple)' : '#cac9c9',
                         transition: 'transform 0.2s ease-in-out',
