@@ -4,7 +4,7 @@ import ViewBudget from './tabs/ViewBudget';
 import Profile from './tabs/Profile';
 import Navbar from './components/NavBar';
 
-const Popup = () => {
+const App = () => {
   const [currentTab, setCurrentTab] = useState('viewBudget');
   const [budget, setBudget] = useState<{ [category: string]: { spent: number; total: number } }>({});
 
@@ -21,19 +21,19 @@ const Popup = () => {
   }, []);
 
   return (
-    <div id="extension-root" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <div style={{ flex: 1, overflowY: 'auto', padding: '16px', boxSizing: 'border-box' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div>
+        <Navbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
+      </div>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '10px', boxSizing: 'border-box' }}>
         {currentTab === 'addPurchase' && <AddPurchase updateBudget={updateBudget} />}
         {currentTab === 'viewBudget' && <ViewBudget budget={budget} />}
         {currentTab === 'settings' && <Profile />}
-      </div>
-      <div>
-        <Navbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
       </div>
     </div>
   );
 };
 
-export default Popup;
+export default App;
 
 

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './../styles.css';
 
 type BudgetCategory = {
   name: string;
@@ -111,7 +110,7 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
       })}
 
       <div style={{ marginTop: '24px' }}>
-        <h3>Add a New Category</h3>
+        <h3 className='subheader'>Add a New Category</h3>
         <input
           type="text"
           placeholder="Category Name"
