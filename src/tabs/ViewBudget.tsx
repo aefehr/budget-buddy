@@ -65,14 +65,14 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
             <div className="budget-details">
               <div className="spent-info">
                 <p>Spent</p>
-                <p className={isOverBudget ? "over-budget" : "within-budget"}>
-                  ${details.spent}
+                <p className={`spent-amount ${isOverBudget ? "over-budget" : "within-budget"}`}>
+                  ${details.spent.toFixed(2)}
                 </p>
               </div>
               <div className="total-info">
                 <p>Budget</p>
-                <p>
-                  ${details.total}
+                <p className="budget-amount">
+                  ${details.total.toFixed(2)}
                 </p>
               </div>
             </div>
@@ -90,6 +90,8 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
 };
 
 export default ViewBudget;
+
+
 
 
 

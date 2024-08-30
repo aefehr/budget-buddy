@@ -55,6 +55,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+/* Main styles */
 * {
     font-family: 'Poppins';
 }
@@ -68,30 +69,6 @@
     --medium-gray: #cac9c9;
 }
 
-.dark-purple {
-    color: var(--dark-purple);
-}
-
-.light-purple {
-    color: var(--light-purple);
-}
-
-.dark-green {
-    color: var(--dark-green);
-}
-
-.medium-green {
-    color: var(--medium-green);
-}
-
-.light-green {
-    color: var(--light-green);
-}
-
-.medium-gray {
-    color: var(--medium-gray);
-}
-
 .header {
     font-weight: 600;
     font-size: 20px;
@@ -103,6 +80,7 @@
     font-weight: 600;
     font-size: 16px;
     text-align: left;
+    margin-top: 25px;
 }
 
 .category-name {
@@ -198,7 +176,7 @@
 /* Overlay Container */
 .overlay-container {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 40px; /* Increased space below the overlay */
     width: 90%;  
     max-width: 280px;  
     margin: 0 auto;
@@ -214,7 +192,6 @@
     background-color: rgba(112, 71, 179, 0.8); 
     border-radius: 30px;
     z-index: 0;
-    border: none; 
 }
 
 /* Total Budget Preview Section */
@@ -240,7 +217,7 @@
 }
 
 .left-text {
-    font-size: 18px; 
+    font-size: 18px;
 }
 
 .total-budget-text {
@@ -253,7 +230,7 @@
     margin-bottom: 8px;
     padding: 8px;
     border-radius: 15px;
-    background-color: #f0f0f0;
+    background-color: #f8f8f8;
     text-align: left;
 }
 
@@ -264,26 +241,28 @@
     margin-top: 2px;
 }
 
-.spent-info, .total-info {
-    text-align: left;
-}
-
 .spent-info p, .total-info p {
     margin: 0;
     font-size: 12px;
     color: #8a8a8a;
 }
 
-.within-budget {
+.within-budget, .over-budget, .spent-amount {
     font-size: 16px;
-    color: var(--medium-green); /* Green if within budget */
     font-weight: bold;
 }
 
-.over-budget {
-    font-size: 16px;
-    color: #D9534F; /* Red if over budget */
+.within-budget, .spent-amount.within-budget {
+    color: var(--medium-green);
+}
+
+.over-budget, .spent-amount.over-budget {
+    color: #D9534F;
+}
+
+.total-info .budget-amount {
     font-weight: bold;
+    color: #2e2e2e;
 }
 
 .budget-progress-bar {
@@ -292,6 +271,7 @@
     background-color: #e0e0e0;
     border-radius: 5px;
     overflow: hidden;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .budget-progress {
@@ -305,9 +285,3 @@
 .budget-progress.over-budget {
     background-color: #D9534F;
 }
-
-
-
-
-
-
