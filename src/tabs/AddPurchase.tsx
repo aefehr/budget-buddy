@@ -1,26 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-interface Category {
-  name: string;
-  spent: number;
-  total: number;
-}
+type Budget = {
+  [category: string]: {
+    spent: number;
+    total: number;
+  };
+};
 
-const AddPurchase = ({ updateBudget }: { updateBudget: () => void }) => {
+const AddPurchase = ({
+  budget,
+  updateBudget,
+}: {
+  budget: Budget;
+  updateBudget: () => void;
+}) => {
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
   const [note, setNote] = useState('');
-  const [categories, setCategories] = useState<Category[]>([]); // Store full Category objects
-
-  useEffect(() => {
-    chrome.storage.local.get(['categories'], (result) => {
-      if (result.categories) {
-        setCategories(result.categories);
-      } else {
-        setCategories([]); // Fallback to an empty array
-      }
-    });
-  }, []);
 
   const handleSave = () => {
     if (amount && category) {
@@ -31,27 +27,21 @@ const AddPurchase = ({ updateBudget }: { updateBudget: () => void }) => {
         date: new Date().toLocaleDateString(),
       };
 
-      // Save the purchase to local storage and update the budget
-      chrome.storage.local.get(['purchases', 'budget'], (result) => {
+      // Update the budget with the new purchase
+      chrome.storage.local.get(['purchases'], (result) => {
         const updatedPurchases = result.purchases ? [...result.purchases, purchase] : [purchase];
-        const updatedBudget = { ...result.budget };
+        const updatedBudget = {
+          ...budget,
+          [category]: {
+            spent: (budget[category]?.spent || 0) + purchase.amount,
+            total: budget[category]?.total || 0,
+          },
+        };
 
-        // Find the selected category and update its spent amount
-        const categoryToUpdate = categories.find((cat) => cat.name === category);
-        if (categoryToUpdate) {
-          categoryToUpdate.spent += purchase.amount;
-
-          // Update the budget object
-          updatedBudget[category] = {
-            spent: categoryToUpdate.spent,
-            total: categoryToUpdate.total,
-          };
-        }
-
-        // Save back to local storage
+        // Save the updated budget and purchases to local storage
         chrome.storage.local.set({ purchases: updatedPurchases, budget: updatedBudget }, () => {
-          updateBudget(); // Call the update function to refresh the View Budget page
-          setAmount(''); // Reset the form
+          updateBudget(); // Refresh the budget data
+          setAmount(''); // Reset form inputs
           setCategory('');
           setNote('');
         });
@@ -63,12 +53,9 @@ const AddPurchase = ({ updateBudget }: { updateBudget: () => void }) => {
   const getBudgetPreview = () => {
     if (!amount || !category) return null;
 
-    const selectedCategory = categories.find((cat) => cat.name === category);
-    if (!selectedCategory) return null;
-
     const amountNum = parseFloat(amount);
-    const newSpent = selectedCategory.spent + amountNum;
-    const remainingBudget = selectedCategory.total - newSpent;
+    const newSpent = (budget[category]?.spent || 0) + amountNum;
+    const remainingBudget = (budget[category]?.total || 0) - newSpent;
 
     return {
       newSpent,
@@ -109,9 +96,9 @@ const AddPurchase = ({ updateBudget }: { updateBudget: () => void }) => {
           }}
         >
           <option value="">Select Category</option>
-          {categories.map((cat) => (
-            <option key={cat.name} value={cat.name}>
-              {cat.name}
+          {Object.keys(budget).map((catName) => (
+            <option key={catName} value={catName}>
+              {catName}
             </option>
           ))}
         </select>
@@ -153,9 +140,7 @@ const AddPurchase = ({ updateBudget }: { updateBudget: () => void }) => {
       )}
 
       {/* Save Button */}
-      <button className='add-button'
-        onClick={handleSave}
-      >
+      <button className='add-button' onClick={handleSave}>
         Save
       </button>
     </div>
@@ -163,6 +148,7 @@ const AddPurchase = ({ updateBudget }: { updateBudget: () => void }) => {
 };
 
 export default AddPurchase;
+
 
 
 

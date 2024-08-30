@@ -1,10 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
-type BudgetCategory = {
-  name: string;
-  spent: number;
-  total: number;
-};
+import React, { useState } from 'react';
 
 type Budget = {
   [category: string]: {
@@ -14,40 +8,30 @@ type Budget = {
 };
 
 const ViewBudget = ({ budget }: { budget: Budget }) => {
-  const [categories, setCategories] = useState<BudgetCategory[]>([]);
   const [newCategory, setNewCategory] = useState({ name: '', total: 0 });
-
-  useEffect(() => {
-    chrome.storage.local.get('categories', (result) => {
-      if (result.categories) {
-        const combinedCategories = result.categories.map((cat: BudgetCategory) => ({
-          name: cat.name,
-          spent: budget[cat.name]?.spent || cat.spent,
-          total: cat.total,
-        }));
-        setCategories(combinedCategories);
-      }
-    });
-  }, [budget]);
-
-  useEffect(() => {
-    chrome.storage.local.set({ categories });
-  }, [categories]);
 
   const handleAddCategory = () => {
     if (newCategory.name && newCategory.total > 0) {
-      const updatedCategories = [...categories, { ...newCategory, spent: 0 }];
-      setCategories(updatedCategories);
-      setNewCategory({ name: '', total: 0 });
+      const updatedBudget = {
+        ...budget,
+        [newCategory.name]: {
+          spent: 0,
+          total: newCategory.total,
+        },
+      };
+
+      chrome.storage.local.set({ budget: updatedBudget }, () => {
+        setNewCategory({ name: '', total: 0 });
+      });
     }
   };
 
   return (
-    <div style={{ padding: '5px' }}> {/* Restored original padding */}
+    <div style={{ padding: '5px' }}>
       <h1 className='header'>Your Budget</h1>
 
-      {categories.map((category, index) => {
-        const isOverBudget = category.spent > category.total;
+      {Object.entries(budget).map(([category, details], index) => {
+        const isOverBudget = details.spent > details.total;
         return (
           <div
             key={index}
@@ -59,7 +43,7 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
               textAlign: 'left',
             }}
           >
-            <h3 className="category-name" style={{ margin: 0 }}>{category.name}</h3>
+            <h3 className="category-name" style={{ margin: 0 }}>{category}</h3>
             <div
               style={{
                 display: 'flex',
@@ -78,13 +62,13 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
                     fontWeight: 'bold',
                   }}
                 >
-                  ${category.spent}
+                  ${details.spent}
                 </p>
               </div>
               <div style={{ textAlign: 'right' }}>
                 <p style={{ margin: 0, fontSize: '12px', color: '#8a8a8a' }}>Total Budget</p>
                 <p style={{ margin: 0, fontSize: '16px', color: '#000', fontWeight: 'bold' }}>
-                  ${category.total}
+                  ${details.total}
                 </p>
               </div>
             </div>
@@ -99,7 +83,7 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
             >
               <div
                 style={{
-                  width: `${(category.spent / category.total) * 100}%`,
+                  width: `${(details.spent / details.total) * 100}%`,
                   height: '10px',
                   backgroundColor: isOverBudget ? '#D9534F' : 'var(--medium-green)', // Red if over budget, purple otherwise
                 }}
@@ -137,9 +121,7 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
             border: '1px solid #ccc',
           }}
         />
-        <button className='add-button'
-          onClick={handleAddCategory}
-        >
+        <button className='add-button' onClick={handleAddCategory}>
           Add Category
         </button>
       </div>
@@ -148,6 +130,3 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
 };
 
 export default ViewBudget;
-
-
-

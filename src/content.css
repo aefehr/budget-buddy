@@ -31,17 +31,7 @@
     z-index: 10000;  /* Higher than the button */
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-      /* overflow-y: auto; Make the panel itself scrollable */
-}
-
-#panel.show {
-    display: flex; /* Ensure it shows up properly */
-}
-
-#panel > div:first-child {
-    flex: 1;
-    overflow-y: auto;  /* Make the content area scrollable */
+    overflow-y: auto;
 }
 
 .exit-button {
@@ -104,7 +94,7 @@
 
 .header {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 20px;
     text-align: center;
     color: #2e2e2e;
 }

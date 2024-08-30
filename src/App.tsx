@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AddPurchase from './tabs/AddPurchase';
 import ViewBudget from './tabs/ViewBudget';
-import Profile from './tabs/Profile';
+import Settings from './tabs/Settings';
 import Navbar from './components/NavBar';
 
 const App = () => {
@@ -15,7 +15,6 @@ const App = () => {
     });
   };
 
-  // Fetch the budget when the component mounts
   useEffect(() => {
     updateBudget();
   }, []);
@@ -26,14 +25,12 @@ const App = () => {
         <Navbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
       </div>
       <div style={{ flex: 1, overflowY: 'auto', padding: '5px', boxSizing: 'border-box' }}>
-        {currentTab === 'addPurchase' && <AddPurchase updateBudget={updateBudget} />}
+        {currentTab === 'addPurchase' && <AddPurchase budget={budget} updateBudget={updateBudget} />}
         {currentTab === 'viewBudget' && <ViewBudget budget={budget} />}
-        {currentTab === 'settings' && <Profile />}
+        {currentTab === 'settings' && <Settings budget={budget} updateBudget={updateBudget} />}
       </div>
     </div>
   );
 };
 
 export default App;
-
-
