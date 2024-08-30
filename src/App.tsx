@@ -27,7 +27,7 @@ const App = () => {
       <div style={{ flex: 1, overflowY: 'auto', padding: '5px', boxSizing: 'border-box' }}>
         {currentTab === 'addPurchase' && <AddPurchase budget={budget} updateBudget={updateBudget} />}
         {currentTab === 'viewBudget' && <ViewBudget budget={budget} />}
-        {currentTab === 'settings' && <Settings budget={budget} updateBudget={updateBudget} />}
+        {currentTab === 'settings' && <Settings budget={budget} setBudget={setBudget} updateBudget={updateBudget} />}
       </div>
     </div>
   );

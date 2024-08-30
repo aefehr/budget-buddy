@@ -92,39 +92,6 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
           </div>
         );
       })}
-
-      <div style={{ marginTop: '24px' }}>
-        <h3 className='subheader'>Add a New Category</h3>
-        <input
-          type="text"
-          placeholder="Category Name"
-          value={newCategory.name}
-          onChange={(e) => setNewCategory({ ...newCategory, name: e.target.value })}
-          style={{
-            width: '100%',
-            padding: '8px',
-            marginBottom: '8px',
-            borderRadius: '4px',
-            border: '1px solid #ccc',
-          }}
-        />
-        <input
-          type="number"
-          placeholder="Total Budget"
-          value={newCategory.total}
-          onChange={(e) => setNewCategory({ ...newCategory, total: parseFloat(e.target.value) })}
-          style={{
-            width: '100%',
-            padding: '8px',
-            marginBottom: '8px',
-            borderRadius: '4px',
-            border: '1px solid #ccc',
-          }}
-        />
-        <button className='add-button' onClick={handleAddCategory}>
-          Add Category
-        </button>
-      </div>
     </div>
   );
 };
