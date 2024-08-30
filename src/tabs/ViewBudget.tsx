@@ -26,67 +26,60 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
     }
   };
 
+  // Calculate total budget and total spent
+  const totalBudget = Object.values(budget).reduce((sum, { total }) => sum + total, 0);
+  const totalSpent = Object.values(budget).reduce((sum, { spent }) => sum + spent, 0);
+  const totalLeft = totalBudget - totalSpent;
+
+  // Get the current month and year
+  const currentMonthYear = new Date().toLocaleString('default', { month: 'long', year: 'numeric' });
+
   return (
-    <div style={{ padding: '5px' }}>
+    <div className="view-budget">
       <h1 className='header'>Your Budget</h1>
 
+      {/* Overlay Container */}
+      <div className="overlay-container">
+        {/* Background Overlay */}
+        <div className="background-overlay"></div>
+
+        {/* Total Budget Preview */}
+        <div className="total-budget-container">
+          <p className="total-budget-date">{currentMonthYear}</p>
+          <h3 className="total-left">
+            ${totalLeft.toFixed(2)} <span className="left-text">left</span>
+          </h3>
+          <p className="total-budget-text">out of ${totalBudget.toFixed(2)} budgeted</p>
+        </div>
+      </div>
+
+      <h2 className='subheader'>Categories</h2>
       {Object.entries(budget).map(([category, details], index) => {
         const isOverBudget = details.spent > details.total;
         return (
           <div
             key={index}
-            style={{
-              marginBottom: '8px',
-              padding: '8px',
-              borderRadius: '8px',
-              backgroundColor: '#f0f0f0',
-              textAlign: 'left',
-            }}
+            className="budget-item"
           >
             <h3 className="category-name" style={{ margin: 0 }}>{category}</h3>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-end',
-                marginTop: '2px',
-              }}
-            >
-              <div style={{ textAlign: 'left' }}>
-                <p style={{ margin: 0, fontSize: '12px' }}>Total Spent</p>
-                <p
-                  style={{
-                    margin: 0,
-                    fontSize: '16px',
-                    color: isOverBudget ? '#D9534F' : 'var(--medium-green)', // Red if over budget, green otherwise
-                    fontWeight: 'bold',
-                  }}
-                >
+            <div className="budget-details">
+              <div className="spent-info">
+                <p>Spent</p>
+                <p className={isOverBudget ? "over-budget" : "within-budget"}>
                   ${details.spent}
                 </p>
               </div>
-              <div style={{ textAlign: 'right' }}>
-                <p style={{ margin: 0, fontSize: '12px', color: '#8a8a8a' }}>Total Budget</p>
-                <p style={{ margin: 0, fontSize: '16px', color: '#000', fontWeight: 'bold' }}>
+              <div className="total-info">
+                <p>Budget</p>
+                <p>
                   ${details.total}
                 </p>
               </div>
             </div>
-            <div
-              style={{
-                marginTop: '8px',
-                width: '100%',
-                backgroundColor: '#e0e0e0',
-                borderRadius: '5px',
-                overflow: 'hidden',
-              }}
-            >
+            <div className="budget-progress-bar">
               <div
-                style={{
-                  width: `${(details.spent / details.total) * 100}%`,
-                  height: '10px',
-                  backgroundColor: isOverBudget ? '#D9534F' : 'var(--medium-green)', // Red if over budget, purple otherwise
-                }}
+                className={`budget-progress ${isOverBudget ? 'over-budget' : 'within-budget'}`}
+                style={{ width: `${(details.spent / details.total) * 100}%` }}
               />
             </div>
           </div>
@@ -97,3 +90,8 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
 };
 
 export default ViewBudget;
+
+
+
+
+
