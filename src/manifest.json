@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Budget Patrol",
+    "name": "Budget Buddy",
     "version": "1.0",
     "permissions": [
       "storage",
