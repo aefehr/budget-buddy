@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { addRippleEffect } from '../utils/rippleEffect';
 
 type Budget = {
   [category: string]: {
@@ -18,7 +19,9 @@ const AddPurchase = ({
   const [category, setCategory] = useState('');
   const [note, setNote] = useState('');
 
-  const handleSave = () => {
+  // Handle saving the purchase
+  const handleSave = (e: React.MouseEvent<HTMLButtonElement>) => {
+    addRippleEffect(e); // Trigger the ripple effect
     if (amount && category) {
       const purchase = {
         amount: parseFloat(amount),
@@ -138,16 +141,17 @@ const AddPurchase = ({
           <p>Remaining Budget: ${budgetPreview.remainingBudget.toFixed(2)}</p>
         </div>
       )}
-
-      {/* Save Button */}
-      <button className='add-button' onClick={handleSave}>
-        Save
-      </button>
+      <div className="button-container">
+        <button className='button' onClick={handleSave}>
+          Save
+        </button>
+      </div>
     </div>
   );
 };
 
 export default AddPurchase;
+
 
 
 

@@ -110,24 +110,49 @@
     font-size: 13px;
 }
 
-.add-button {
+/* button styles */
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
     background-color: var(--dark-purple); 
-    color: white; /* Set the text color to white */
-    border: none; /* Remove any default borders */
-    border-radius: 10px; /* Add a slight border radius for rounded corners */
-    padding: 10px 15px; /* Add some padding for size */
-    cursor: pointer; /* Change the cursor to a pointer on hover */
- /* Ensure font matches the rest of the app */
-    font-weight: 600; /* Optional: make button text bold */
-    width: 100%;
+    font-size: 13px;
+    color: white; 
+    border: none; 
+    border-radius: 10px; 
+    padding: 10px 15px; 
+    cursor: pointer; 
+    width: 40%;
     transition: transform 0.2s ease-in-out;
+    position: relative; 
+    overflow: hidden; 
+    border-radius: 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.add-button:hover {
-    transform: scale(1.02); /* Grow on hover */
-    background-color: var(--dark-purple) !important; /* Ensure the background stays purple */
+.button:hover {
+    transform: scale(1.02); 
+    background-color: var(--dark-purple) !important; 
 }
 
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--light-purple);
+    transform: scale(0);
+    animation: ripple-animation 1s linear;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
 
 /* Wrapper for the amount input and dollar sign */
 .amount-input-wrapper {
@@ -164,9 +189,6 @@
     opacity: 0.7;
 }
 
-/* Remove spinner buttons in Chrome, Safari, Edge, and Opera */
-.amount-input::-webkit-outer-spin-button,
-.amount-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+
+
+

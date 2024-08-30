@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { addRippleEffect } from '../utils/rippleEffect'; 
 
 type Budget = {
   [category: string]: {
@@ -30,7 +31,8 @@ const Settings = ({
   };
 
   // Handle adding a new category
-  const handleAddCategory = () => {
+  const handleAddCategory = (e: React.MouseEvent<HTMLButtonElement>) => {
+    addRippleEffect(e); // Trigger the ripple effect
     if (newCategory.name && newCategory.total > 0) {
       const updatedBudget = {
         ...budget,
@@ -45,6 +47,21 @@ const Settings = ({
         setNewCategory({ name: '', total: 0 }); // Reset the input fields
       });
     }
+  };
+
+  // Handle resetting the budget
+  const handleResetBudget = (e: React.MouseEvent<HTMLButtonElement>) => {
+    addRippleEffect(e); // Trigger the ripple effect
+    const updatedBudget = { ...budget };
+
+    for (let category in updatedBudget) {
+      updatedBudget[category].spent = 0;
+    }
+
+    chrome.storage.local.set({ budget: updatedBudget }, () => {
+      setBudget(updatedBudget); // Update the local state to reflect the reset
+      updateBudget(); // Refresh the budget data
+    });
   };
 
   return (
@@ -117,15 +134,30 @@ const Settings = ({
             border: '1px solid #ccc',
           }}
         />
-        <button className='add-button' onClick={handleAddCategory}>
-          Add Category
-        </button>
+         <div className="button-container">
+          <button className='button' onClick={handleAddCategory}>
+            Save
+          </button>
+         </div>
+      </div>
+
+      {/* Reset Budget */}
+      <div style={{ marginTop: '24px' }}>
+        <h3 className='subheader'>Reset Budget</h3>
+        <p>Reset expenses back to $0 for each category</p>
+        <div className="button-container">
+          <button className='button' onClick={handleResetBudget}>
+            Reset
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Settings;
+
+
 
 
 
