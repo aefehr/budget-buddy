@@ -17,7 +17,6 @@ const AddPurchase = ({
 }) => {
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
-  const [note, setNote] = useState('');
 
   // Handle saving the purchase
   const handleSave = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -26,7 +25,6 @@ const AddPurchase = ({
       const purchase = {
         amount: parseFloat(amount),
         category,
-        note,
         date: new Date().toLocaleDateString(),
       };
 
@@ -46,7 +44,6 @@ const AddPurchase = ({
           updateBudget(); // Refresh the budget data
           setAmount(''); // Reset form inputs
           setCategory('');
-          setNote('');
         });
       });
     }
@@ -70,11 +67,11 @@ const AddPurchase = ({
 
   return (
     <div style={{ padding: '5px' }}>
-      <h1 className='header'>Add Expense</h1>
+      <h1 className='header'>Add Purchase</h1>
 
       {/* Amount Input Field */}
       <div className="amount-input-wrapper">
-        <span className="dollar-sign">$</span>
+      <span className="dollar-sign">$</span>
         <input
           type="number"
           value={amount}
@@ -86,7 +83,6 @@ const AddPurchase = ({
 
       {/* Category Selection */}
       <div style={{ marginBottom: '16px' }}>
-        <label>Category</label>
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
@@ -107,23 +103,6 @@ const AddPurchase = ({
         </select>
       </div>
 
-      {/* Note Input */}
-      <div style={{ marginBottom: '16px' }}>
-        <label>Note</label>
-        <input
-          type="text"
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
-          style={{
-            width: '100%',
-            padding: '8px',
-            marginTop: '8px',
-            borderRadius: '4px',
-            border: '1px solid #ccc',
-          }}
-        />
-      </div>
-
       {/* Budget Preview */}
       {budgetPreview && (
         <div
@@ -135,7 +114,7 @@ const AddPurchase = ({
             border: '1px solid #ccc',
           }}
         >
-          <h3>Budget Preview</h3>
+          <h2 className="subheader">Budget Preview</h2>
           <p><strong>{category}</strong></p>
           <p>New Total Spent: ${budgetPreview.newSpent.toFixed(2)}</p>
           <p>Remaining Budget: ${budgetPreview.remainingBudget.toFixed(2)}</p>

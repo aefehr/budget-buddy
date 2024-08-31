@@ -141,9 +141,8 @@
     justify-content: center;
     width: 160px; /* Adjust width to be less wide */
     padding: 10px 15px;
-    background-color: #f9f9f9;
+    background-color: #f3f3f3;
     border-radius: 30px; /* Creates the oval shape */
-    border: 1px solid #ccc;
     margin: 20px auto; /* Centers the wrapper horizontally */
 }
 
@@ -156,7 +155,7 @@
 .amount-input {
     border: none;
     background-color: transparent;
-    font-size: 24px; /* Larger font size for the placeholder '0' */
+    font-size: 38px; /* Larger font size for the placeholder '0' */
     color: var(--dark-purple); /* Use the dark purple from your color variables */
     text-align: center;
     width: 100%;
