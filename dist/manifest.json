@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Budget Buddy",
     "version": "1.0",
-    "description": "Reference and update your budget while shopping online.",
+    "description": "Seamlessly reference and update your budget while shopping online.",
     "permissions": [
       "storage",
       "activeTab",

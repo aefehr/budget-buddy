@@ -68,42 +68,16 @@ const Settings = ({
     <div style={{ padding: '5px' }}>
       <h1 className='extension-header'>Settings</h1>
 
-      {/* Manage Categories */}
-      <h2 className='extension-subheader'>Manage Categories</h2>
-      {Object.keys(budget).length > 0 ? (
-        Object.keys(budget).map((categoryName, index) => (
-          <div
-            key={index}
-            style={{
-              marginBottom: '8px',
-              padding: '8px',
-              borderRadius: '8px',
-              backgroundColor: '#f0f0f0',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <span className='extension-category-name'>{categoryName}</span>
-            <button
-              onClick={() => handleDeleteCategory(categoryName)}
-              style={{
-                backgroundColor: '#D9534F',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                padding: '5px 10px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-              }}
-            >
-              Delete
-            </button>
-          </div>
-        ))
-      ) : (
-        <p>No categories available.</p>
-      )}
+      {/* Reset Budget */}
+      <div>
+        <h3 className='extension-subheader'>Reset Budget</h3>
+        <p className='normal-text'>Reset expenses back to $0 for each category</p>
+        <div className="extension-button-container">
+          <button className='extension-button' onClick={handleResetBudget}>
+            Reset
+          </button>
+        </div>
+      </div>
 
       {/* Add New Category */}
       <div style={{ marginTop: '24px' }}>
@@ -141,16 +115,43 @@ const Settings = ({
          </div>
       </div>
 
-      {/* Reset Budget */}
-      <div style={{ marginTop: '24px' }}>
-        <h3 className='extension-subheader'>Reset Budget</h3>
-        <p>Reset expenses back to $0 for each category</p>
-        <div className="button-container">
-          <button className='extension-button' onClick={handleResetBudget}>
-            Reset
-          </button>
-        </div>
-      </div>
+      {/* Manage Categories */}
+      <h2 className='extension-subheader'>Manage Categories</h2>
+      {Object.keys(budget).length > 0 ? (
+        Object.keys(budget).map((categoryName, index) => (
+          <div
+            key={index}
+            style={{
+              marginBottom: '8px',
+              padding: '8px',
+              borderRadius: '8px',
+              backgroundColor: '#f0f0f0',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <span className='extension-category-name'>{categoryName}</span>
+            <button
+              onClick={() => handleDeleteCategory(categoryName)}
+              style={{
+                backgroundColor: '#D9534F',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                padding: '5px 10px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+              }}
+            >
+              Delete
+            </button>
+          </div>
+        ))
+      ) : (
+        <p>No categories available.</p>
+      )}
+
     </div>
   );
 };
