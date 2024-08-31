@@ -24,7 +24,7 @@ const App = () => {
       <div>
         <Navbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
       </div>
-      <div style={{ flex: 1, overflowY: 'auto', padding: '10px', boxSizing: 'border-box' }}>
+      <div style={{ flex: 1, overflowY: 'auto', paddingTop: '0px', paddingLeft: '10px', paddingRight: '10px', paddingBottom: '10px', boxSizing: 'border-box' }}>
         {currentTab === 'addPurchase' && <AddPurchase budget={budget} updateBudget={updateBudget} />}
         {currentTab === 'viewBudget' && <ViewBudget budget={budget} />}
         {currentTab === 'settings' && <Settings budget={budget} setBudget={setBudget} updateBudget={updateBudget} />}

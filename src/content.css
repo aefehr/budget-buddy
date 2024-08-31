@@ -25,7 +25,7 @@
     width: 320px;
     height: 80vh;  /* Set the panel height */
     background-color: #fff;
-    border-radius: 30px;
+    border-radius: 15px;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
     display: none;  /* Hidden by default */
     z-index: 10000;  /* Higher than the button */
@@ -63,16 +63,18 @@
 :root {
     --dark-purple: #964FF7;
     --light-purple: #D1A7EE;
+    --lighter-purple: #dfb4fd;
     --dark-green: #14705E;
     --medium-green: #39B985;
     --light-green: #C5FBC6;
     --medium-gray: #cac9c9;
+    --dark-gray: #9e9e9e;
 }
 
 .header {
     font-weight: 600;
-    font-size: 20px;
-    text-align: center;
+    font-size: 18px;
+    text-align: left;
     color: #2e2e2e;
 }
 
@@ -230,7 +232,7 @@
     margin-bottom: 8px;
     padding: 8px;
     border-radius: 15px;
-    background-color: #f8f8f8;
+    background-color: #f3f3f3;
     text-align: left;
 }
 
@@ -268,7 +270,7 @@
 .budget-progress-bar {
     margin-top: 8px;
     width: 100%;
-    background-color: #e0e0e0;
+    background-color: #d2d2d2;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
