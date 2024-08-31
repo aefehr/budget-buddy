@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: {
     content: './src/content.tsx', // Entry point for your content script
+    popup: './src/popup.tsx'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -31,6 +32,7 @@ module.exports = {
             { from: 'src/manifest.json', to: '.' },
             { from: 'public', to: '.' },
             { from: 'src/content.css', to: 'content.css' },
+            { from: 'src/popup.html', to: 'popup.html' },
         ],
     }),
   ],

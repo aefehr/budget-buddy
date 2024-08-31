@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Buddy Popup</title>
+    <style>
+        /* Basic styling to control the size and layout of the popup */
+        body {
+            margin: 0;
+            padding: 0;
+            width: 320px;  /* Set the width of the popup */
+            height: 480px; /* Set the height of the popup */
+            overflow-y: auto; /* Scroll if content overflows */
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif; /* Ensure your font is applied */
+        }
+
+        /* Ensure the root div takes up all the available space */
+        #popup-root {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="popup-root"></div>
+    <script src="popup.bundle.js"></script> <!-- Adjust this to match your bundled JS file -->
+</body>
+</html>
+
