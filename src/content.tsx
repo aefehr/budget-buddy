@@ -3,56 +3,67 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import './content.css';
 
-// Check if the page is a product page (this is a basic check; you can refine this)
-const productPageIndicators = [
-    document.querySelector('button[aria-label*="add to bag"]'),  // Checking for Add to Bag button
-    document.querySelector('.price'),  // Checking for price elements
-    document.querySelector('.product-title'),  // Checking for product titles
-    document.querySelector('[id*="product"]')   // Checking for product detail container
-];
+// Function to check if the URL contains specific keywords
+function checkUrlForKeywords() {
+    const urlKeywords = ['product', 'listing', 'shop'];
+    return urlKeywords.some(keyword => window.location.href.includes(keyword));
+}
 
-const isProductPage = productPageIndicators.some(indicator => indicator !== null);
+// Function to check for the presence of an "Add to Cart" button
+function checkForAddToCartButton() {
+    return document.querySelector('button[aria-label*="add to cart"], button[aria-label*="add to bag"], button[id*="add-to-cart"], button[class*="add-to-cart"], button[data-test*="add-to-cart"]');
+}
 
-if (isProductPage) {
+// Function to check for other product page indicators
+function checkForProductPageIndicators() {
+    const productPageIndicators = [
+        document.querySelector('.price'),           // Checking for price elements
+        document.querySelector('.product-title'),   // Checking for product titles
+        document.querySelector('[id*="product"]')   // Checking for product detail container
+    ];
+
+    return productPageIndicators.some(indicator => indicator !== null);
+}
+
+// Function to determine if the current page is a product page
+function isProductPage() {
+    return checkUrlForKeywords() && (checkForAddToCartButton() || checkForProductPageIndicators());
+}
+
+if (isProductPage()) {
     injectFloatingButton();
 }
 
 function injectFloatingButton() {
     console.log('Injecting floating button...');
 
-    // Create the button element
     const button = document.createElement('div');
-    button.id = 'floating-button';
-    button.innerText = '$';  // Dollar sign or any icon
-
-    // Add transition styles to the button
+    button.id = 'extension-floating-button';  // Namespaced ID
+    button.innerText = '$'; 
     button.style.transition = 'right 0.3s ease-in-out';
 
-    // Append the button to the body
     document.body.appendChild(button);
     console.log('Button appended to body');
 
     // Create the panel container but don't display it yet
     const panelContainer = document.createElement('div');
-    panelContainer.id = 'panel';
+    panelContainer.id = 'extension-panel';  // Namespaced ID
     panelContainer.style.display = 'none'; // Hidden by default
     document.body.appendChild(panelContainer);
 
-    // Attach Shadow DOM to the container
+    // Attach Shadow DOM to the panel container
     const shadowRoot = panelContainer.attachShadow({ mode: 'open' });
     console.log('Shadow root created:', shadowRoot);
-
-    // Inject initial styles to reset everything inside the shadow root
-    const styleReset = document.createElement('style');
-    styleReset.textContent = `:host { all: initial; }`;
-    shadowRoot.appendChild(styleReset);
 
     // Load the CSS into the shadow root
     fetch(chrome.runtime.getURL('content.css'))
         .then(response => response.text())
         .then(cssContent => {
             const style = document.createElement('style');
-            style.textContent = cssContent;
+            style.textContent = `
+                :host { all: initial; }
+            `;
+            style.textContent += cssContent;
             shadowRoot.appendChild(style);
             console.log('CSS loaded and injected into shadow root');
         })
@@ -86,7 +97,7 @@ function injectFloatingButton() {
 
     // Add an exit button inside the panel to close it
     const exitButton = document.createElement('div');
-    exitButton.className = 'exit-button';
+    exitButton.className = 'extension-exit-button';
     exitButton.innerText = '×';
     exitButton.style.cursor = 'pointer';
     shadowRoot.appendChild(exitButton);
@@ -98,6 +109,8 @@ function injectFloatingButton() {
         console.log('Panel closed');
     });
 }
+
+
 
 
 

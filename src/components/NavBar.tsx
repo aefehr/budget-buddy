@@ -65,7 +65,6 @@ const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab }) => {
 
     return (
         <div
-            id="custom-navbar"
             style={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -107,6 +106,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab }) => {
                         {tab.icon}
                     </div>
                     <span
+                        className='nav-bar-text'
                         style={{
                             color:
                                 currentTab === tab.name

@@ -35,50 +35,50 @@ const ViewBudget = ({ budget }: { budget: Budget }) => {
   const currentMonthYear = new Date().toLocaleString('default', { month: 'long', year: 'numeric' });
 
   return (
-    <div className="view-budget">
-      <h1 className='header'>Your Budget</h1>
+    <div className="extension-view-budget">
+      <h1 className='extension-header'>Your Budget</h1>
 
       {/* Overlay Container */}
-      <div className="overlay-container">
+      <div className="extension-overlay-container">
         {/* Background Overlay */}
-        <div className="background-overlay"></div>
+        <div className="extension-background-overlay"></div>
 
         {/* Total Budget Preview */}
-        <div className="total-budget-container">
-          <p className="total-budget-date">{currentMonthYear}</p>
-          <h3 className="total-left">
-            ${totalLeft.toFixed(2)} <span className="left-text">left</span>
+        <div className="extension-total-budget-container">
+          <p className="extension-total-budget-date">{currentMonthYear}</p>
+          <h3 className="extension-total-left">
+            ${totalLeft.toFixed(2)} <span className="extension-left-text">left</span>
           </h3>
-          <p className="total-budget-text">out of ${totalBudget.toFixed(2)} budgeted</p>
+          <p className="extension-total-budget-text">out of ${totalBudget.toFixed(2)} budgeted</p>
         </div>
       </div>
 
-      <h2 className='subheader'>Categories</h2>
+      <h2 className='extension-subheader'>Categories</h2>
       {Object.entries(budget).map(([category, details], index) => {
         const isOverBudget = details.spent > details.total;
         return (
           <div
             key={index}
-            className="budget-item"
+            className="extension-budget-item"
           >
-            <h3 className="category-name" style={{ margin: 0 }}>{category}</h3>
-            <div className="budget-details">
-              <div className="spent-info">
+            <h3 className="extension-category-name" style={{ margin: 0 }}>{category}</h3>
+            <div className="extension-budget-details">
+              <div className="extension-spent-info">
                 <p>Spent</p>
-                <p className={`spent-amount ${isOverBudget ? "over-budget" : "within-budget"}`}>
+                <p className={`extension-spent-amount ${isOverBudget ? "extension-over-budget" : "extension-within-budget"}`}>
                   ${details.spent.toFixed(2)}
                 </p>
               </div>
-              <div className="total-info">
+              <div className="extension-total-info">
                 <p>Budget</p>
-                <p className="budget-amount">
+                <p className="extension-budget-amount">
                   ${details.total.toFixed(2)}
                 </p>
               </div>
             </div>
-            <div className="budget-progress-bar">
+            <div className="extension-budget-progress-bar">
               <div
-                className={`budget-progress ${isOverBudget ? 'over-budget' : 'within-budget'}`}
+                className={`extension-budget-progress ${isOverBudget ? 'extension-over-budget' : 'extension-within-budget'}`}
                 style={{ width: `${(details.spent / details.total) * 100}%` }}
               />
             </div>

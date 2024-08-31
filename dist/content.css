@@ -1,4 +1,4 @@
-#floating-button {
+#extension-floating-button {
     position: fixed;
     right: -60px; /* Start off-screen */
     top: 50%;
@@ -14,11 +14,11 @@
     align-items: center;
     color: #ffffff;
     font-size: 18px;
-    animation: slideIn 1s forwards;  /* Animation */
+    animation: extension-slideIn 1s forwards;  /* Animation */
     box-shadow: inset -2px 0px 10px rgba(0, 0, 0, 0.3); /* Inner shadow */
 }
 
-#panel {
+#extension-panel {
     position: fixed;
     right: 10px;
     top: 10%;
@@ -34,7 +34,7 @@
     overflow-y: auto;
 }
 
-.exit-button {
+.extension-exit-button {
     position: absolute;
     top: 5px;
     right: 15px;
@@ -44,7 +44,7 @@
 }
 
 /* Slide-in animation */
-@keyframes slideIn {
+@keyframes extension-slideIn {
     from {
         right: -60px;  /* Start off-screen */
     }
@@ -54,11 +54,6 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-/* Main styles */
-* {
-    font-family: 'Poppins';
-}
 
 :root {
     --dark-purple: #964FF7;
@@ -71,34 +66,38 @@
     --dark-gray: #9e9e9e;
 }
 
-.header {
+.extension-header {
     font-weight: 600;
     font-size: 18px;
     text-align: left;
     color: #2e2e2e;
+    font-family: 'Poppins';
 }
 
-.subheader {
+.extension-subheader {
     font-weight: 600;
     font-size: 16px;
     text-align: left;
     margin-top: 25px;
+    font-family: 'Poppins';
 }
 
-.category-name {
+.extension-category-name {
     font-weight: 600;
     font-size: 14px;
+    font-family: 'Poppins';
 }
 
 /* button styles */
-.button-container {
+.extension-button-container {
     display: flex;
     justify-content: center;
 }
 
-.button {
+.extension-button {
     background-color: var(--dark-purple); 
     font-size: 13px;
+    font-family: 'Poppins';
     color: white; 
     border: none; 
     border-radius: 10px; 
@@ -112,22 +111,22 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.button:hover {
+.extension-button:hover {
     transform: scale(1.02); 
     background-color: var(--dark-purple) !important; 
 }
 
-.ripple-effect {
+.extension-ripple-effect {
     position: absolute;
     border-radius: 50%;
     background-color: var(--light-purple);
     transform: scale(0);
-    animation: ripple-animation 1s linear;
+    animation: extension-ripple-animation 1s linear;
     pointer-events: none;
     z-index: 10;
 }
 
-@keyframes ripple-animation {
+@keyframes extension-ripple-animation {
     to {
         transform: scale(4);
         opacity: 0;
@@ -135,7 +134,7 @@
 }
 
 /* Wrapper for the amount input and dollar sign */
-.amount-input-wrapper {
+.extension-amount-input-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -146,13 +145,14 @@
     margin: 20px auto; /* Centers the wrapper horizontally */
 }
 
-.dollar-sign {
+.extension-dollar-sign {
     font-size: 24px; /* Slightly larger for better alignment */
     color: #888;
     text-align: center;
+    font-family: 'Poppins';
 }
 
-.amount-input {
+.extension-amount-input {
     border: none;
     background-color: transparent;
     font-size: 38px; /* Larger font size for the placeholder '0' */
@@ -161,21 +161,23 @@
     width: 100%;
     outline: none;
     appearance: textfield; /* Removes the spinner in some browsers */
+    font-family: 'Poppins';
 }
 
-.amount-input::placeholder {
+.extension-amount-input::placeholder {
     color: var(--dark-purple); /* Purple color for the placeholder */
     opacity: 0.7;
+    font-family: 'Poppins';
 }
 
 /* ViewBudget Styles */
 
-.view-budget {
+.extension-view-budget {
     padding: 5px;
 }
 
 /* Overlay Container */
-.overlay-container {
+.extension-overlay-container {
     position: relative;
     margin-bottom: 40px; /* Increased space below the overlay */
     width: 90%;  
@@ -184,7 +186,7 @@
 }
 
 /* Background Overlay */
-.background-overlay {
+.extension-background-overlay {
     position: absolute;
     top: 25px;
     left: 4%;  
@@ -196,7 +198,7 @@
 }
 
 /* Total Budget Preview Section */
-.total-budget-container {
+.extension-total-budget-container {
     background: linear-gradient(135deg, #D1A7EE 0%, #964FF7 100%);
     padding: 20px;
     border-radius: 30px;
@@ -207,66 +209,74 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.total-budget-date {
+.extension-total-budget-date {
     font-size: 14px;
     margin: 0 0 5px 0;
+    font-family: 'Poppins';
 }
 
-.total-left {
+.extension-total-left {
     font-size: 32px;
     margin: 0 0 5px 0;
+    font-family: 'Poppins';
 }
 
-.left-text {
+.extension-left-text {
     font-size: 18px;
+    font-family: 'Poppins';
 }
 
-.total-budget-text {
+.extension-total-budget-text {
     font-size: 12px;
     margin: 0;
+    font-family: 'Poppins';
 }
 
 /* Budget Breakdown Styles */
-.budget-item {
+.extension-budget-item {
     margin-bottom: 8px;
     padding: 8px;
     border-radius: 15px;
     background-color: #f3f3f3;
     text-align: left;
+    font-family: 'Poppins';
 }
 
-.budget-details {
+.extension-budget-details {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     margin-top: 2px;
 }
 
-.spent-info p, .total-info p {
+.extension-spent-info p, .extension-total-info p {
     margin: 0;
     font-size: 12px;
     color: #8a8a8a;
+    font-family: 'Poppins';
 }
 
-.within-budget, .over-budget, .spent-amount {
+.extension-within-budget, .extension-over-budget, .extension-spent-amount {
     font-size: 16px;
     font-weight: bold;
+    font-family: 'Poppins';
 }
 
-.within-budget, .spent-amount.within-budget {
+.extension-within-budget, .extension-spent-amount.extension-within-budget {
     color: var(--medium-green);
 }
 
-.over-budget, .spent-amount.over-budget {
+.extension-over-budget, .extension-spent-amount.extension-over-budget {
     color: #D9534F;
 }
 
-.total-info .budget-amount {
+.extension-total-info .extension-budget-amount {
     font-weight: bold;
     color: #2e2e2e;
+    font-family: 'Poppins';
 }
 
-.budget-progress-bar {
+.extension-budget-progress-bar {
     margin-top: 8px;
     width: 100%;
     background-color: #d2d2d2;
@@ -275,14 +285,20 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.budget-progress {
+.extension-budget-progress {
     height: 10px;
 }
 
-.budget-progress.within-budget {
+.extension-budget-progress.extension-within-budget {
     background-color: var(--medium-green);
 }
 
-.budget-progress.over-budget {
+.extension-budget-progress.extension-over-budget {
     background-color: #D9534F;
 }
+
+.nav-bar-text {
+    font-family: 'Poppins';
+}
+
+

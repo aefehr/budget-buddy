@@ -67,17 +67,17 @@ const AddPurchase = ({
 
   return (
     <div style={{ padding: '5px' }}>
-      <h1 className='header'>Add Purchase</h1>
+      <h1 className='extension-header'>Add Purchase</h1>
 
       {/* Amount Input Field */}
-      <div className="amount-input-wrapper">
-      <span className="dollar-sign">$</span>
+      <div className="extension-amount-input-wrapper">
+      <span className="extension-dollar-sign">$</span>
         <input
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           placeholder="0"
-          className="amount-input"
+          className="extension-amount-input"
         />
       </div>
 
@@ -114,14 +114,14 @@ const AddPurchase = ({
             border: '1px solid #ccc',
           }}
         >
-          <h2 className="subheader">Budget Preview</h2>
+          <h2 className="extension-subheader">Budget Preview</h2>
           <p><strong>{category}</strong></p>
           <p>New Total Spent: ${budgetPreview.newSpent.toFixed(2)}</p>
           <p>Remaining Budget: ${budgetPreview.remainingBudget.toFixed(2)}</p>
         </div>
       )}
-      <div className="button-container">
-        <button className='button' onClick={handleSave}>
+      <div className="extension-button-container">
+        <button className='extension-button' onClick={handleSave}>
           Save
         </button>
       </div>

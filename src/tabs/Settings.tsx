@@ -66,10 +66,10 @@ const Settings = ({
 
   return (
     <div style={{ padding: '5px' }}>
-      <h1 className='header'>Settings</h1>
+      <h1 className='extension-header'>Settings</h1>
 
       {/* Manage Categories */}
-      <h2 className='subheader'>Manage Categories</h2>
+      <h2 className='extension-subheader'>Manage Categories</h2>
       {Object.keys(budget).length > 0 ? (
         Object.keys(budget).map((categoryName, index) => (
           <div
@@ -84,7 +84,7 @@ const Settings = ({
               alignItems: 'center',
             }}
           >
-            <span className='category-name'>{categoryName}</span>
+            <span className='extension-category-name'>{categoryName}</span>
             <button
               onClick={() => handleDeleteCategory(categoryName)}
               style={{
@@ -107,7 +107,7 @@ const Settings = ({
 
       {/* Add New Category */}
       <div style={{ marginTop: '24px' }}>
-        <h3 className='subheader'>Add a New Category</h3>
+        <h3 className='extension-subheader'>Add a New Category</h3>
         <input
           type="text"
           placeholder="Category Name"
@@ -134,8 +134,8 @@ const Settings = ({
             border: '1px solid #ccc',
           }}
         />
-         <div className="button-container">
-          <button className='button' onClick={handleAddCategory}>
+         <div className="extension-button-container">
+          <button className='extension-button' onClick={handleAddCategory}>
             Save
           </button>
          </div>
@@ -143,10 +143,10 @@ const Settings = ({
 
       {/* Reset Budget */}
       <div style={{ marginTop: '24px' }}>
-        <h3 className='subheader'>Reset Budget</h3>
+        <h3 className='extension-subheader'>Reset Budget</h3>
         <p>Reset expenses back to $0 for each category</p>
         <div className="button-container">
-          <button className='button' onClick={handleResetBudget}>
+          <button className='extension-button' onClick={handleResetBudget}>
             Reset
           </button>
         </div>
