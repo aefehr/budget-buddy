@@ -71,12 +71,11 @@ const AddPurchase = ({
 
       {/* Amount Input Field */}
       <div className="extension-amount-input-wrapper">
-        <span className="extension-dollar-sign">$</span>
         <input
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          placeholder="0"
+          placeholder="$0"
           className="extension-amount-input"
         />
       </div>
@@ -101,20 +100,22 @@ const AddPurchase = ({
 
       {/* Budget Preview */}
       {budgetPreview && (
-        <div
-          style={{
-            marginBottom: '16px',
-            padding: '10px',
-            backgroundColor: '#f9f9f9',
-            borderRadius: '4px',
-            border: '1px solid #ccc',
-          }}
-        >
-          <h2 className="extension-subheader">Budget Preview</h2>
-          <p><strong>{category}</strong></p>
-          <p>New Total Spent: ${budgetPreview.newSpent.toFixed(2)}</p>
-          <p>Remaining Budget: ${budgetPreview.remainingBudget.toFixed(2)}</p>
-        </div>
+        <>
+          <h2 className="extension-subheader" style={{marginBottom: '8px' }}>Budget Preview</h2>
+          <div
+            style={{
+              marginBottom: '16px',
+              padding: '10px',
+              borderRadius: '15px',
+              backgroundColor: '#f3f3f3',
+              border: 'none',
+            }}
+          >
+            <h3 className="extension-category-name">{category}</h3>
+            <p>New Total Spent: ${budgetPreview.newSpent.toFixed(2)}</p>
+            <p>Remaining Budget: ${budgetPreview.remainingBudget.toFixed(2)}</p>
+          </div>
+        </>
       )}
       <div className="extension-button-container">
         <button className='extension-button' onClick={handleSave}>
