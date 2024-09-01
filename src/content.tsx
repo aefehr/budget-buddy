@@ -39,7 +39,16 @@ function injectFloatingButton() {
 
     const button = document.createElement('div');
     button.id = 'extension-floating-button';  // Namespaced ID
-    button.innerText = '$'; 
+
+    // Create an img element for the icon
+    const iconImg = document.createElement('img');
+    iconImg.src = chrome.runtime.getURL('icons/icon.png');  // Path to your icon
+    iconImg.alt = 'Budget Buddy Icon';
+    iconImg.style.width = '100%';  // Make sure the icon fits the button size
+    iconImg.style.height = '100%';
+
+    // Append the icon to the button
+    button.appendChild(iconImg);
     button.style.transition = 'right 0.3s ease-in-out';
 
     document.body.appendChild(button);
@@ -109,6 +118,7 @@ function injectFloatingButton() {
         console.log('Panel closed');
     });
 }
+
 
 
 

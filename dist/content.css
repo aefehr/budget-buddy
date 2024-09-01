@@ -3,19 +3,14 @@
     right: -60px; /* Start off-screen */
     top: 50%;
     transform: translateY(-50%);
-    width: 70px;
-    height: 70px;
-    background-color: #14705E;  
-    border-radius: 7px 0px 0px 7px; /* Rounded corners on left, straight edge on right */
+    width: 80px;
+    height: 80px;
     cursor: pointer;
     z-index: 9999;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #ffffff;
-    font-size: 18px;
+    justify-content: right;
+    align-items: right;
     animation: extension-slideIn 1s forwards;  /* Animation */
-    box-shadow: inset -2px 0px 10px rgba(0, 0, 0, 0.3); /* Inner shadow */
 }
 
 #extension-panel {
@@ -78,6 +73,7 @@
     font-weight: 600;
     font-size: 16px;
     text-align: left;
+    margin-top: 25px;
     font-family: 'Poppins';
 }
 

@@ -125,7 +125,7 @@ const Settings = ({
               marginBottom: '8px',
               padding: '8px',
               borderRadius: '8px',
-              backgroundColor: '#f0f0f0',
+              backgroundColor: '#f3f3f3',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
@@ -141,7 +141,6 @@ const Settings = ({
                 borderRadius: '4px',
                 padding: '5px 10px',
                 cursor: 'pointer',
-                fontWeight: 'bold',
               }}
             >
               Delete
