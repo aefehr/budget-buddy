@@ -71,7 +71,7 @@ const AddPurchase = ({
 
       {/* Amount Input Field */}
       <div className="extension-amount-input-wrapper">
-      <span className="extension-dollar-sign">$</span>
+        <span className="extension-dollar-sign">$</span>
         <input
           type="number"
           value={amount}
@@ -83,24 +83,20 @@ const AddPurchase = ({
 
       {/* Category Selection */}
       <div style={{ marginBottom: '16px' }}>
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          style={{
-            width: '100%',
-            padding: '8px',
-            marginTop: '8px',
-            borderRadius: '4px',
-            border: '1px solid #ccc',
-          }}
-        >
-          <option value="">Select Category</option>
-          {Object.keys(budget).map((catName) => (
-            <option key={catName} value={catName}>
-              {catName}
-            </option>
-          ))}
-        </select>
+        <div className="extension-select-wrapper">
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="extension-select"
+          >
+            <option value="">Select Category</option>
+            {Object.keys(budget).map((catName) => (
+              <option key={catName} value={catName}>
+                {catName}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {/* Budget Preview */}
