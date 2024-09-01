@@ -3,61 +3,73 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import './content.css';
 
-// Function to check if the URL contains specific keywords
 function checkUrlForKeywords() {
-    const urlKeywords = ['product', 'listing', 'shop'];
-    return urlKeywords.some(keyword => window.location.href.includes(keyword));
+    const urlKeywords = ['product', 'listing', 'shop', 'item', 'detail', 'buy', 'purchase'];
+    return urlKeywords.some(keyword => window.location.href.toLowerCase().includes(keyword));
 }
 
-// Function to check for the presence of an "Add to Cart" button
 function checkForAddToCartButton() {
-    return document.querySelector('button[aria-label*="add to cart"], button[aria-label*="add to bag"], button[id*="add-to-cart"], button[class*="add-to-cart"], button[data-test*="add-to-cart"]');
+    const buttonSelectors = [
+        'button[aria-label*="add to cart"]',
+        'button[aria-label*="add to bag"]',
+        'button[id*="add-to-cart"]',
+        'button[class*="add-to-cart"]',
+        'button[data-test*="add-to-cart"]',
+        'button[title*="add to cart"]',
+        'button[type="submit"][name*="add"]', // Generic add-to-cart buttons
+        'button[class*="buy"]',
+        'button[data-test*="buy"]',
+        'button[class*="purchase"]'
+    ];
+    return buttonSelectors.some(selector => document.querySelector(selector) !== null);
 }
 
-// Function to check for other product page indicators
 function checkForProductPageIndicators() {
     const productPageIndicators = [
         document.querySelector('.price'),           // Checking for price elements
         document.querySelector('.product-title'),   // Checking for product titles
-        document.querySelector('[id*="product"]')   // Checking for product detail container
+        document.querySelector('[id*="product"]'),  // Checking for product detail container
+        document.querySelector('[class*="product-details"]'), // Common class names for product details
+        document.querySelector('meta[property="og:type"][content="product"]'), // Open Graph metadata for products
+        document.querySelector('link[rel="canonical"][href*="product"]'), // Canonical links with product in the URL
+        document.querySelector('[class*="product-title"]'), // Class names with "product-title"
+        document.querySelector('[id*="productTitle"]'), // IDs containing "productTitle"
+        document.querySelector('[data-test*="product-title"]'), // Data-test attributes with "product-title"
+        document.querySelector('[data-module-type="ProductDetailTitle"]') // Module type for product details
     ];
 
     return productPageIndicators.some(indicator => indicator !== null);
 }
 
-// Function to determine if the current page is a product page
 function isProductPage() {
-    return checkUrlForKeywords() && (checkForAddToCartButton() || checkForProductPageIndicators());
+    return checkUrlForKeywords() || checkForAddToCartButton() || checkForProductPageIndicators();
 }
 
 if (isProductPage()) {
-    injectFloatingButton();
+    injectFloatingButton(); 
 }
 
 function injectFloatingButton() {
     console.log('Injecting floating button...');
 
     const button = document.createElement('div');
-    button.id = 'extension-floating-button';  // Namespaced ID
+    button.id = 'extension-floating-button';  
 
-    // Create an img element for the icon
     const iconImg = document.createElement('img');
-    iconImg.src = chrome.runtime.getURL('icons/icon.png');  // Path to your icon
+    iconImg.src = chrome.runtime.getURL('icons/icon.png');
     iconImg.alt = 'Budget Buddy Icon';
-    iconImg.style.width = '100%';  // Make sure the icon fits the button size
+    iconImg.style.width = '100%';  
     iconImg.style.height = '100%';
 
-    // Append the icon to the button
     button.appendChild(iconImg);
     button.style.transition = 'right 0.3s ease-in-out';
 
     document.body.appendChild(button);
     console.log('Button appended to body');
 
-    // Create the panel container but don't display it yet
     const panelContainer = document.createElement('div');
-    panelContainer.id = 'extension-panel';  // Namespaced ID
-    panelContainer.style.display = 'none'; // Hidden by default
+    panelContainer.id = 'extension-panel';  
+    panelContainer.style.display = 'none'; 
     document.body.appendChild(panelContainer);
 
     // Attach Shadow DOM to the panel container
@@ -113,7 +125,7 @@ function injectFloatingButton() {
 
     // Event listener to close the panel
     exitButton.addEventListener('click', () => {
-        button.style.right = '0px';  // Slide button back
+        button.style.right = '0px';  
         panelContainer.style.display = 'none';
         console.log('Panel closed');
     });
