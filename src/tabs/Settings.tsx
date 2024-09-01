@@ -21,21 +21,19 @@ const Settings = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [editingCategory, setEditingCategory] = useState<number>(0);
 
-  // Handle category deletion
   const handleDeleteCategory = (categoryName: string) => {
     const updatedBudget = { ...budget };
     delete updatedBudget[categoryName];
 
     chrome.storage.local.set({ budget: updatedBudget }, () => {
-      setBudget(updatedBudget); // Update the local state to reflect the deletion
-      updateBudget(); // Refresh the budget data
-      setSelectedCategory(''); // Reset selected category
+      setBudget(updatedBudget); 
+      updateBudget(); 
+      setSelectedCategory(''); 
     });
   };
 
-  // Handle adding a new category
   const handleAddCategory = (e: React.MouseEvent<HTMLButtonElement>) => {
-    addRippleEffect(e); // Trigger the ripple effect
+    addRippleEffect(e); 
     if (newCategory.name && newCategory.total > 0) {
       const updatedBudget = {
         ...budget,
@@ -46,15 +44,14 @@ const Settings = ({
       };
 
       chrome.storage.local.set({ budget: updatedBudget }, () => {
-        setBudget(updatedBudget); // Update the local state to reflect the new category
-        setNewCategory({ name: '', total: 0 }); // Reset the input fields
+        setBudget(updatedBudget); 
+        setNewCategory({ name: '', total: 0 }); 
       });
     }
   };
 
-  // Handle resetting the budget
   const handleResetBudget = (e: React.MouseEvent<HTMLButtonElement>) => {
-    addRippleEffect(e); // Trigger the ripple effect
+    addRippleEffect(e); 
     const updatedBudget = { ...budget };
 
     for (let category in updatedBudget) {
@@ -62,12 +59,11 @@ const Settings = ({
     }
 
     chrome.storage.local.set({ budget: updatedBudget }, () => {
-      setBudget(updatedBudget); // Update the local state to reflect the reset
-      updateBudget(); // Refresh the budget data
+      setBudget(updatedBudget); 
+      updateBudget(); 
     });
   };
 
-  // Handle updating the budget amount for a category
   const handleSaveBudgetChange = () => {
     const updatedBudget = {
       ...budget,
@@ -78,12 +74,11 @@ const Settings = ({
     };
 
     chrome.storage.local.set({ budget: updatedBudget }, () => {
-      setBudget(updatedBudget); // Update the local state to reflect the budget change
-      updateBudget(); // Refresh the budget data
+      setBudget(updatedBudget); 
+      updateBudget(); 
     });
   };
 
-  // Handle category selection
   const handleCategorySelection = (categoryName: string) => {
     setSelectedCategory(categoryName);
     setEditingCategory(budget[categoryName]?.total || 0);

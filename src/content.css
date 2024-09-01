@@ -1,6 +1,6 @@
 #extension-floating-button {
     position: fixed;
-    right: -60px; /* Start off-screen */
+    right: -60px; 
     top: 50%;
     transform: translateY(-50%);
     width: 80px;
@@ -10,7 +10,7 @@
     display: flex;
     justify-content: right;
     align-items: right;
-    animation: extension-slideIn 1s forwards;  /* Animation */
+    animation: extension-slideIn 1s forwards; 
 }
 
 #extension-panel {
@@ -18,12 +18,12 @@
     right: 10px;
     top: 10%;
     width: 320px;
-    height: 80vh;  /* Set the panel height */
+    height: 80vh; 
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
-    display: none;  /* Hidden by default */
-    z-index: 10000;  /* Higher than the button */
+    display: none;  
+    z-index: 10000;  
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -38,13 +38,12 @@
     color: #2e2e2e;
 }
 
-/* Slide-in animation */
 @keyframes extension-slideIn {
     from {
-        right: -60px;  /* Start off-screen */
+        right: -60px; 
     }
     to {
-        right: 0px;  /* End at the right edge */
+        right: 0px;  
     }
 }
 
@@ -182,11 +181,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 150px; /* Adjust width to be less wide */
+    width: 150px;
     padding: 6px 18px;
     background-color: #f3f3f3;
-    border-radius: 50px; /* Creates the oval shape */
-    margin: 20px auto; /* Centers the wrapper horizontally */
+    border-radius: 50px; 
+    margin: 20px auto;
     box-shadow: 0 0 3px 1px rgba(145, 82, 218, 0.7);
 }
 
@@ -199,24 +198,22 @@ input[type="number"]::-webkit-inner-spin-button {
 .extension-amount-input {
     border: none;
     background-color: transparent;
-    font-size: 24px; /* Larger font size for the placeholder '0' */
-    color: #9e9e9e; /* Use the dark purple from your color variables */
+    font-size: 24px; 
+    color: #9e9e9e; 
     text-align: center;
     width: 100%;
     outline: none;
-    appearance: textfield; /* Removes the spinner in some browsers */
+    appearance: textfield; 
     font-family: 'Poppins';
     padding: 0;
     margin: 0;
 }
 
 .extension-amount-input::placeholder {
-    color: #9e9e9e; /* Purple color for the placeholder */
+    color: #9e9e9e; 
     opacity: 0.7;
     font-family: 'Poppins';
 }
-
-/* ViewBudget Styles */
 
 .extension-view-budget {
     padding: 5px;
@@ -225,7 +222,7 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Overlay Container */
 .extension-overlay-container {
     position: relative;
-    margin-bottom: 40px; /* Increased space below the overlay */
+    margin-bottom: 40px;
     width: 90%;  
     max-width: 280px;  
     margin: 0 auto;
@@ -370,7 +367,7 @@ input[type="number"]::-webkit-inner-spin-button {
   .extension-select {
     width: 100%;
     padding: 10px;
-    padding-right: 28px; /* Space for the arrow */
+    padding-right: 28px;
     padding-left: 12px;
     margin-top: 8px;
     border-radius: 10px;
@@ -380,8 +377,8 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 14px;
     color: #868686;
     appearance: none;
-    -webkit-appearance: none; /* For Safari */
-    -moz-appearance: none; /* For Firefox */
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
     outline: none;
   }
   

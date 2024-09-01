@@ -9,24 +9,18 @@ type Budget = {
 
 const ViewBudget = ({ budget }: { budget: Budget }) => {
 
-  // Calculate total budget and total spent
   const totalBudget = Object.values(budget).reduce((sum, { total }) => sum + total, 0);
   const totalSpent = Object.values(budget).reduce((sum, { spent }) => sum + spent, 0);
   const totalLeft = totalBudget - totalSpent;
 
-  // Get the current month and year
   const currentMonthYear = new Date().toLocaleString('default', { month: 'long', year: 'numeric' });
 
   return (
     <div className="extension-view-budget">
       <h1 className='extension-header'>Your Budget</h1>
 
-      {/* Overlay Container */}
       <div className="extension-overlay-container">
-        {/* Background Overlay */}
         <div className="extension-background-overlay"></div>
-
-        {/* Total Budget Preview */}
         <div className="extension-total-budget-container">
           <p className="extension-total-budget-date">{currentMonthYear}</p>
           <h3 className="extension-total-left">

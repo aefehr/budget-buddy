@@ -114,7 +114,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab }) => {
                                     : '#9e9e9e',
                             fontSize: '14px',
                             fontWeight: '500',
-                            marginTop: '-5px', // Reduced space between icon and text
+                            marginTop: '-5px', 
                         }}
                     >
                         {tab.label}

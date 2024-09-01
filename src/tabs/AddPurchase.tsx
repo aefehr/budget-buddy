@@ -18,9 +18,8 @@ const AddPurchase = ({
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
 
-  // Handle saving the purchase
   const handleSave = (e: React.MouseEvent<HTMLButtonElement>) => {
-    addRippleEffect(e); // Trigger the ripple effect
+    addRippleEffect(e); 
     if (amount && category) {
       const purchase = {
         amount: parseFloat(amount),
@@ -28,7 +27,6 @@ const AddPurchase = ({
         date: new Date().toLocaleDateString(),
       };
 
-      // Update the budget with the new purchase
       chrome.storage.local.get(['purchases'], (result) => {
         const updatedPurchases = result.purchases ? [...result.purchases, purchase] : [purchase];
         const updatedBudget = {
@@ -39,17 +37,15 @@ const AddPurchase = ({
           },
         };
 
-        // Save the updated budget and purchases to local storage
         chrome.storage.local.set({ purchases: updatedPurchases, budget: updatedBudget }, () => {
-          updateBudget(); // Refresh the budget data
-          setAmount(''); // Reset form inputs
+          updateBudget(); 
+          setAmount(''); 
           setCategory('');
         });
       });
     }
   };
 
-  // Calculate the budget preview
   const getBudgetPreview = () => {
     if (!amount || !category) return null;
 
