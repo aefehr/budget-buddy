@@ -64,6 +64,7 @@ const AddPurchase = ({
   };
 
   const budgetPreview = getBudgetPreview();
+  const isOverBudget = budgetPreview && budgetPreview.newSpent > (budget[category]?.total || 0);
 
   return (
     <div style={{ padding: '5px' }}>
@@ -101,19 +102,23 @@ const AddPurchase = ({
       {/* Budget Preview */}
       {budgetPreview && (
         <>
-          <h2 className="extension-subheader" style={{marginBottom: '8px' }}>Budget Preview</h2>
-          <div
-            style={{
-              marginBottom: '16px',
-              padding: '10px',
-              borderRadius: '15px',
-              backgroundColor: '#f3f3f3',
-              border: 'none',
-            }}
-          >
-            <h3 className="extension-category-name">{category}</h3>
-            <p>New Total Spent: ${budgetPreview.newSpent.toFixed(2)}</p>
-            <p>Remaining Budget: ${budgetPreview.remainingBudget.toFixed(2)}</p>
+          <h2 className="extension-subheader extension-budget-preview-header">Budget Preview</h2>
+          <div className="extension-budget-preview-container">
+            <h3 className="extension-budget-preview-category">{category}</h3>
+            <div className="extension-budget-preview-details">
+              <div className="extension-spent-info">
+                <p>Spent</p>
+                <p className={`extension-spent-amount ${isOverBudget ? "extension-over-budget" : "extension-within-budget"}`}>
+                  ${budgetPreview.newSpent.toFixed(2)}
+                </p>
+              </div>
+              <div className="extension-total-info">
+                <p>Remaining</p>
+                <p className="extension-remaining-budget" style={{color: '#2e2e2e'}}>
+                  ${budgetPreview.remainingBudget.toFixed(2)}
+                </p>
+              </div>
+            </div>
           </div>
         </>
       )}
@@ -127,6 +132,7 @@ const AddPurchase = ({
 };
 
 export default AddPurchase;
+
 
 
 

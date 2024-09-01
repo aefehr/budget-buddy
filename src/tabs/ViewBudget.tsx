@@ -8,23 +8,6 @@ type Budget = {
 };
 
 const ViewBudget = ({ budget }: { budget: Budget }) => {
-  const [newCategory, setNewCategory] = useState({ name: '', total: 0 });
-
-  const handleAddCategory = () => {
-    if (newCategory.name && newCategory.total > 0) {
-      const updatedBudget = {
-        ...budget,
-        [newCategory.name]: {
-          spent: 0,
-          total: newCategory.total,
-        },
-      };
-
-      chrome.storage.local.set({ budget: updatedBudget }, () => {
-        setNewCategory({ name: '', total: 0 });
-      });
-    }
-  };
 
   // Calculate total budget and total spent
   const totalBudget = Object.values(budget).reduce((sum, { total }) => sum + total, 0);
