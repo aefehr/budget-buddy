@@ -18,7 +18,7 @@ Budget Buddy automatically injects a clickable icon onto many product pages, hel
 4. Customizable Categories: Add, edit, and delete an unlimited number of budget categories made for you, by you.
 
 ## Preview
-<img width="1113" alt="Screenshot 2024-09-01 at 3 55 28 PM" src="https://github.com/user-attachments/assets/252f229e-4724-4d9a-ab30-b5c47c97d0e3">
-<img width="1252" alt="Screenshot 2024-09-01 at 3 54 17 PM" src="https://github.com/user-attachments/assets/59341c7d-d606-4077-80d5-060c7d2ced3c">
+<img width="1400" alt="Screenshot 2024-09-01 at 3 58 35 PM" src="https://github.com/user-attachments/assets/521b004f-c655-4097-9291-329904327f24">
+<img width="948" alt="Screenshot 2024-09-01 at 3 58 05 PM" src="https://github.com/user-attachments/assets/8a532924-1cdd-4c84-a854-c2636af11b6f">
 <img width="1009" alt="Screenshot 2024-09-01 at 3 56 03 PM" src="https://github.com/user-attachments/assets/fdcb5620-c8ec-4e85-85e3-116b238cc9fe">
 <img width="1200" alt="Screenshot 2024-09-01 at 3 56 25 PM" src="https://github.com/user-attachments/assets/961604ed-ff16-4150-89d2-707bfc4d4736">
