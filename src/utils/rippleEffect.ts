@@ -9,7 +9,7 @@ export const addRippleEffect = (e: React.MouseEvent<HTMLButtonElement>) => {
     ripple.style.width = ripple.style.height = `${size}px`;
     ripple.style.left = `${x}px`;
     ripple.style.top = `${y}px`;
-    ripple.classList.add('ripple-effect');
+    ripple.classList.add('extension-ripple-effect');
     button.appendChild(ripple);
 
     setTimeout(() => {

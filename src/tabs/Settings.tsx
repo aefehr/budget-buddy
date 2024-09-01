@@ -17,11 +17,12 @@ const Settings = ({
   setBudget: (budget: Budget) => void;
   updateBudget: () => void;
 }) => {
-  const [newCategory, setNewCategory] = useState({ name: '', total: 0 });
+  const [newCategory, setNewCategory] = useState({ name: '', total: '' });
   const [selectedCategory, setSelectedCategory] = useState<string>('');
-  const [editingCategory, setEditingCategory] = useState<number>(0);
+  const [editingCategory, setEditingCategory] = useState<number | string>('');
 
-  const handleDeleteCategory = (categoryName: string) => {
+  const handleDeleteCategory = (e: React.MouseEvent<HTMLButtonElement>, categoryName: string) => {
+    addRippleEffect(e); 
     const updatedBudget = { ...budget };
     delete updatedBudget[categoryName];
 
@@ -34,18 +35,20 @@ const Settings = ({
 
   const handleAddCategory = (e: React.MouseEvent<HTMLButtonElement>) => {
     addRippleEffect(e); 
-    if (newCategory.name && newCategory.total > 0) {
+    const parsedTotal = parseFloat(newCategory.total);
+
+    if (newCategory.name && parsedTotal > 0) {
       const updatedBudget = {
         ...budget,
         [newCategory.name]: {
           spent: 0,
-          total: newCategory.total,
+          total: parsedTotal,
         },
       };
 
       chrome.storage.local.set({ budget: updatedBudget }, () => {
         setBudget(updatedBudget); 
-        setNewCategory({ name: '', total: 0 }); 
+        setNewCategory({ name: '', total: '' }); 
       });
     }
   };
@@ -64,24 +67,29 @@ const Settings = ({
     });
   };
 
-  const handleSaveBudgetChange = () => {
-    const updatedBudget = {
-      ...budget,
-      [selectedCategory]: {
-        ...budget[selectedCategory],
-        total: editingCategory,
-      },
-    };
+  const handleSaveBudgetChange = (e: React.MouseEvent<HTMLButtonElement>, categoryName: string) => {
+    addRippleEffect(e); 
+    const parsedTotal = parseFloat(editingCategory as string);
 
-    chrome.storage.local.set({ budget: updatedBudget }, () => {
-      setBudget(updatedBudget); 
-      updateBudget(); 
-    });
+    if (!isNaN(parsedTotal) && parsedTotal >= 0) {
+      const updatedBudget = {
+        ...budget,
+        [categoryName]: {
+          ...budget[categoryName],
+          total: parsedTotal,
+        },
+      };
+
+      chrome.storage.local.set({ budget: updatedBudget }, () => {
+        setBudget(updatedBudget); 
+        updateBudget(); 
+      });
+    }
   };
 
   const handleCategorySelection = (categoryName: string) => {
     setSelectedCategory(categoryName);
-    setEditingCategory(budget[categoryName]?.total || 0);
+    setEditingCategory(budget[categoryName]?.total || '');
   };
 
   return (
@@ -101,20 +109,25 @@ const Settings = ({
 
       {/* Add New Category */}
       <div style={{ marginTop: '24px', marginBottom: '16px' }}>
-        <h3 className='extension-subheader'>Add a New Category</h3>
+        <h3 className='extension-subheader'>Add a New Budget Category</h3>
         <input
           type="text"
-          placeholder="Category Name"
+          placeholder="Name"
           value={newCategory.name}
           onChange={(e) => setNewCategory({ ...newCategory, name: e.target.value })}
           className='extension-text-field-input'
         />
         <input
           type="number"
-          placeholder="Budget"
+          placeholder="$0"
           value={newCategory.total}
-          onChange={(e) => setNewCategory({ ...newCategory, total: parseFloat(e.target.value) })}
+          onChange={(e) => setNewCategory({ ...newCategory, total: e.target.value })}
           className='extension-text-field-input'
+          onKeyDown={(e) => {
+            if (e.key === 'Backspace' && newCategory.total.length === 1) {
+              setNewCategory({ ...newCategory, total: '' });
+            }
+          }}
         />
       </div>
       <div className="extension-button-container">
@@ -150,20 +163,25 @@ const Settings = ({
             <input
               type="number"
               value={editingCategory}
-              onChange={(e) => setEditingCategory(parseFloat(e.target.value))}
+              onChange={(e) => setEditingCategory(e.target.value)}
               className='extension-text-field-input'
-              placeholder="Update Budget"
+              placeholder="$0"
               style={{ width: '50%', marginBottom: '10px', marginTop: '4px'  }}
+              onKeyDown={(e) => {
+                if (e.key === 'Backspace' && (editingCategory as string).length === 1) {
+                  setEditingCategory('');
+                }
+              }}
             />
             <div className="extension-button-container">
-              <button className='extension-button' onClick={handleSaveBudgetChange}>
+              <button className='extension-button' onClick={(e) => handleSaveBudgetChange(e, selectedCategory)}>
                 Save
               </button>
             </div>
             <p className='normal-text'>Delete category:</p>
             <div className="extension-button-container">
               <button
-                onClick={() => handleDeleteCategory(selectedCategory)}
+                onClick={(e) => handleDeleteCategory(e, selectedCategory)}
                 className='extension-delete-button'
               >
                 Delete
@@ -177,6 +195,8 @@ const Settings = ({
 };
 
 export default Settings;
+
+
 
 
 
