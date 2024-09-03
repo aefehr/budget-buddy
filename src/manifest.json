@@ -4,9 +4,7 @@
     "version": "1.0",
     "description": "Seamlessly reference and update your budget while shopping online.",
     "permissions": [
-      "storage",
-      "activeTab",
-      "scripting"
+      "storage"
     ],
     "content_scripts": [
       {
