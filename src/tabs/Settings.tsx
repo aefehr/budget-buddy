@@ -99,7 +99,7 @@ const Settings = ({
       {/* Reset Budget */}
       <div>
         <h2 className='extension-subheader'>Reset Budget</h2>
-        <p className='normal-text'>Reset spending to $0 for each category</p>
+        <p className='extension-normal-text'>Reset spending to $0 for each category</p>
         <div className="extension-button-container">
           <button className='extension-button' onClick={handleResetBudget}>
             Reset

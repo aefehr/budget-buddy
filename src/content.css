@@ -345,11 +345,11 @@ input[type="number"]::-webkit-inner-spin-button {
     background-color: #D9534F;
 }
 
-.nav-bar-text {
+.extension-nav-bar-text {
     font-family: 'Poppins';
 }
 
-.normal-text {
+.extension-normal-text {
     font-family: 'Poppins';
     font-size: 13px;
     color: #9e9e9e;

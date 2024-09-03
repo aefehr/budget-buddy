@@ -106,7 +106,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab }) => {
                         {tab.icon}
                     </div>
                     <span
-                        className='nav-bar-text'
+                        className='extension-nav-bar-text'
                         style={{
                             color:
                                 currentTab === tab.name
