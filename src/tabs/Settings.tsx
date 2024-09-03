@@ -159,7 +159,7 @@ const Settings = ({
         <>
           <h3 className='extension-category-name' style={{ marginBottom: '4px' }}>{selectedCategory}</h3>
           <div style={{ marginBottom: '8px' }}>
-            <p className='normal-text'>Update budget amount:</p>
+            <p className='extension-normal-text'>Update budget amount:</p>
             <input
               type="number"
               value={editingCategory}
@@ -178,7 +178,7 @@ const Settings = ({
                 Save
               </button>
             </div>
-            <p className='normal-text'>Delete category:</p>
+            <p className='extension-normal-text'>Delete category:</p>
             <div className="extension-button-container">
               <button
                 onClick={(e) => handleDeleteCategory(e, selectedCategory)}
